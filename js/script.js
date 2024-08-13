@@ -18,9 +18,11 @@ function showData(dataArray) {
   }
 }
 
-function getJSONData(url){
+
+// Escribe el código necesario para realizar el fetch al archivo con los datos y mostrar los estudiantes con la función showData
+function getJSONData(DATA_URL){
   let result = {};
-  fetch(url) 
+  return fetch(DATA_URL) 
   .then(response => {
     if (response.ok) {
       return response.json();
@@ -41,10 +43,10 @@ function getJSONData(url){
 }
 
 
+getJSONData(DATA_URL).then(function(resultObj){
+  if (resultObj.status === "ok")
+  {
+      let classData = resultObj.data;
+      showData(classData.students);
+  }})
 
-
-let studentData = getJSONData(DATA_URL);
-
-showData(studentData);
-
-// Escribe el código necesario para realizar el fetch al archivo con los datos y mostrar los estudiantes con la función showData
